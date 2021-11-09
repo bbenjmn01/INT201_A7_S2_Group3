@@ -1,5 +1,6 @@
 import { products } from './products.js';
 import { addProductToCart } from './product-cart.js';
+import { searchProductName } from './product-search.js';
 
 // header
 const divHeader = document.querySelector('#header');
@@ -66,21 +67,12 @@ function showProducts() {
 
 let searchName = document.querySelector('#searchBox');
 
-searchName.addEventListener('keyup', (e) => {
-    let text = e.target.value.toLowerCase();
-    console.log(text)
-    for (const pd of products) {
-        let productName = pd.product_name;
-        if (!productName.toLowerCase().includes(text)) {
-            document.querySelector(pd.product_id).style.display = 'none';
-        }
-    }
-});
+searchName.addEventListener('keyup', searchProductName);
 
-let filterProduct = document.querySelectorAll('.product');
 document.querySelector("#searchBox").addEventListener("keyup", filter);
 
 function filter(e) {
+    let filterProduct = document.querySelectorAll('.product');
     let text = e.target.value;
     console.log(text);
     for (let i = 0; i < filterProduct.length; i++) {
